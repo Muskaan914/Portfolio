@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muskaan Sharma · Full-Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Newsreader:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14100c;--bg2:#1d1712;--fg:#f4ece0;--mut:#a89a88;--line:#3a2f25;--gold:#e0b25a;--card:#221a13;
+--f:'Bricolage Grotesque',system-ui,sans-serif;--s:'Newsreader',Georgia,serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6efe4;--bg2:#ece2d2;--fg:#231a10;--mut:#6d5e4c;--line:#d6c8b2;--gold:#9a6a12;--card:#fbf6ee}}
+:root[data-theme="light"]{--bg:#f6efe4;--bg2:#ece2d2;--fg:#231a10;--mut:#6d5e4c;--line:#d6c8b2;--gold:#9a6a12;--card:#fbf6ee}
+:root[data-theme="dark"]{--bg:#14100c;--bg2:#1d1712;--fg:#f4ece0;--mut:#a89a88;--line:#3a2f25;--gold:#e0b25a;--card:#221a13}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:18px;align-items:center;padding:14px 5vw;background:var(--bg);border-bottom:1px solid var(--line);font-size:14px;overflow-x:auto;white-space:nowrap}
+nav a{color:var(--fg);text-decoration:none;opacity:.8}nav a:hover,nav a:focus-visible{opacity:1;color:var(--gold)}
+nav .t{margin-left:auto;color:var(--mut);font-size:12px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.hero{min-height:82vh;display:flex;flex-direction:column;justify-content:center;padding:8vh 5vw}
+.hero small{color:var(--mut);font-size:14px}
+h1{font-size:clamp(40px,8.5vw,118px);line-height:.98;margin:.2em 0 .3em;font-weight:800;letter-spacing:-.03em}
+h1 em{font-family:var(--s);font-weight:400;color:var(--gold)}
+.role{display:inline-block;height:1.05em;overflow:hidden;vertical-align:bottom;perspective:600px}
+.role span{display:block;transform-origin:50% 0;animation:flip .5s ease}
+@keyframes flip{from{transform:rotateX(-90deg);opacity:0}to{transform:none;opacity:1}}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{padding:13px 22px;border-radius:99px;border:1px solid var(--fg);color:var(--fg);text-decoration:none;font-weight:600;background:none;font:inherit;font-weight:600;cursor:pointer}
+.btn.p{background:var(--gold);border-color:var(--gold);color:#1a1208}
+.avail{margin-top:34px;color:var(--mut);font-size:14px}.avail i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#6fcf7f;margin-right:8px}
+#doors{position:relative;height:100vh;min-height:560px;background:radial-gradient(ellipse at 50% 30%,#3a2a18 0,var(--bg) 70%);overflow:hidden}
+#doors h2{position:absolute;top:6vh;left:0;right:0;text-align:center;margin:0;font-size:clamp(26px,4.6vw,56px);font-weight:800;letter-spacing:-.02em;z-index:2;pointer-events:none;color:#f4ece0}
+#doors p.h{position:absolute;bottom:5vh;left:0;right:0;text-align:center;color:#c9b9a2;margin:0;z-index:2;pointer-events:none;font-size:14px}
+canvas{display:block;width:100%;height:100%}
+.alt{display:flex;gap:8px;position:absolute;bottom:10vh;left:0;right:0;justify-content:center;flex-wrap:wrap;z-index:3}
+.alt button{background:rgba(20,16,12,.7);color:#f4ece0;border:1px solid #5a4a38;border-radius:99px;padding:8px 14px;cursor:pointer;font:inherit;font-size:13px}
+.alt button:hover{border-color:var(--gold)}
+#panel{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 28px) 5vw 60px;display:none}
+#panel.on{display:block;animation:rise .45s ease}
+@keyframes rise{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+#panel .in{max-width:1000px;margin:0 auto}
+#panel h3{font-size:clamp(34px,6vw,76px);margin:.4em 0 .1em;line-height:1;letter-spacing:-.03em}
+#panel .tg{font-family:var(--s);font-style:italic;font-size:22px;color:var(--gold);margin:0 0 24px}
+ul.ck{list-style:none;padding:0;margin:0 0 40px;display:grid;gap:10px;max-width:560px}
+ul.ck li{padding-left:30px;position:relative}ul.ck li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+.pj{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.pj div{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px}
+.pj b{font-size:20px;display:block;margin-bottom:4px}.pj span{color:var(--mut);font-size:13px;display:block;margin-bottom:10px}
+.pj p{margin:0;font-size:15px}
+section.sec{padding:12vh 5vw}
+.story{background:var(--bg2)}
+.story h2,.contact h2{font-size:clamp(32px,6vw,80px);margin:0 0 .6em;letter-spacing:-.03em;line-height:1}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:5vw;max-width:880px}
+.yr{position:relative;padding-bottom:56px}
+.yr::before{content:"";position:absolute;left:calc(-5vw - 8px);top:22px;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+.yr big{font-size:clamp(52px,10vw,140px);font-weight:800;letter-spacing:-.04em;line-height:1;opacity:.95}
+.yr .c{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px 20px;margin-top:12px;max-width:560px}
+.yr .c b{display:block}.yr .c span{color:var(--mut);font-size:13px}.yr .c p{margin:6px 0 0;font-size:15px}
+.contact a.big{display:block;font-size:clamp(20px,4vw,44px);color:var(--fg);text-decoration:none;font-weight:600;border-bottom:1px solid var(--line);padding:14px 0;word-break:break-all}
+.contact a.big:hover{color:var(--gold)}
+footer{padding:30px 5vw;color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav>
+<a href="#top">Home</a><a href="#doors" data-d="0">Full-Stack</a><a href="#doors" data-d="1">AI &amp; ML</a><a href="#doors" data-d="2">Geospatial</a><a href="#doors" data-d="3">Data</a><a href="#story">My story</a><a href="#contact">Contact</a>
+<span class="t" id="clock"></span>
+</nav>
+
+<header class="hero" id="top">
+<small>Computer Engineering student · Mumbai</small>
+<h1>Hi, I’m <em>Muskaan.</em><br>I am a <span class="role" id="role"><span>Full-Stack Developer</span></span></h1>
+<p style="max-width:560px;color:var(--mut);font-size:18px">I build AI-powered web apps with React, Python and PyTorch, and I take projects from concept to a working demo.</p>
+<div class="cta"><a class="btn p" href="#contact">Start a project</a><a class="btn" href="#doors">See my work</a></div>
+<div class="avail"><i></i>Open to Software Engineering / Full-Stack roles</div>
+</header>
+
+<section id="doors">
+<h2>Magic happens behind the doors</h2>
+<canvas id="c" aria-label="Four 3D doors. Click a door to enter."></canvas>
+<div class="alt" id="alt"></div>
+<p class="h">Hover a door, then click to enter</p>
+</section>
+
+<section class="sec story" id="story">
+<h2>Let’s go back in time.</h2>
+<div class="tl">
+<div class="yr"><big>2027</big><div class="c"><b>B.E. in Computer Science</b><span>Smt. Indira Gandhi College of Engineering · expected graduation</span><p>Web Technologies, Software Engineering, Machine Learning, Data Science.</p></div></div>
+<div class="yr"><big>2026</big>
+<div class="c"><b>Data Science Intern</b><span>Imarticus Learning · Jan–Feb 2026</span><p>Cleaned data and built Power BI dashboards with Python and SQL.</p></div>
+<div class="c"><b>President, Eloquence Club</b><span>2025–2026</span><p>Led technical and communication events and the student teams behind them.</p></div></div>
+<div class="yr"><big>2024</big><div class="c"><b>Core Member, Training &amp; Placement Cell</b><span>2024–2025</span><p>Coordinated placement drives, interview scheduling and recruitment paperwork.</p></div></div>
+</div>
+</section>
+
+<section class="sec contact" id="contact">
+<h2>Got a project?<br>Let’s build it together.</h2>
+<a class="big" href="mailto:sharmamuskaan574@gmail.com">sharmamuskaan574@gmail.com</a>
+<a class="big" href="tel:+918356858576">+91 83568 58576</a>
+<a class="big" href="https://linkedin.com/in/muskaan-sharma-13670b314" target="_blank" rel="noopener">LinkedIn</a>
+<a class="big" href="https://github.com/Muskaan914" target="_blank" rel="noopener">GitHub</a>
+</section>
+<footer>© 2026 Muskaan Sharma · Mumbai, India</footer>
+
+<div id="panel" role="dialog" aria-modal="true"><div class="in">
+<button class="btn" id="back">← Back to the doors</button>
+<h3 id="pt"></h3><p class="tg" id="pg"></p><ul class="ck" id="pl"></ul><div class="pj" id="pj"></div>
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const D=[
+{n:"Full-Stack Developer",t:"Full-Stack Development",c:0x2c4f9e,g:"From responsive screens to REST APIs.",
+ l:["React.js and Vite interfaces that stay fast and responsive","Node.js, FastAPI and Flask backends","REST API integration and real-time data sync","Supabase, Firebase, MySQL and PostgreSQL","Deployment on AWS and Oracle Cloud"],
+ p:[["AI Pashudhan","React, Vite, PyTorch, Supabase","Livestock dashboard with breed recognition, vaccination tracking, milk monitoring and a searchable breed encyclopedia."],["ChatBridge","React, REST APIs","Real-time multilingual chat that translates messages as people type, built from reusable React components."],["AmberWave","React, Python, Firebase/Supabase","Missing child alert platform with user registration and real-time emergency notifications."]]},
+{n:"AI Builder",t:"AI & Machine Learning",c:0x6b4f8c,g:"Models that ship inside real products.",
+ l:["PyTorch model training and integration","OpenAI API integration and prompt engineering","n8n workflow automation","ML fundamentals from coursework and projects"],
+ p:[["AI Pashudhan","PyTorch","A trained model recognises cattle and buffalo breeds and serves predictions through backend APIs."],["AmberWave","PyTorch, Python","Architecture built for fast, reliable missing child identification and tracking."]]},
+{n:"Geospatial Problem Solver",t:"Geospatial & Algorithms",c:0x4f8a68,g:"Finding the best path across real terrain.",
+ l:["A* pathfinding with road and water constraints","Slope, terrain difficulty and cost maps from elevation data","Interactive 2D maps and 3D terrain views","JavaScript algorithms and data structures (freeCodeCamp)"],
+ p:[["Terrain-Aware Route Planning","Python, A*, elevation data","Works across terrain regions, tested on Manali, Himachal Pradesh, with a 2D map and 3D terrain view of the route."]]},
+{n:"Data Storyteller",t:"Data & Analytics",c:0xc2652a,g:"Raw data in, clear decisions out.",
+ l:["Cleaning and preprocessing structured datasets","Python and SQL analysis","Power BI and Tableau dashboards","IBM and Cisco analytics certifications"],
+ p:[["Data Science Internship","Imarticus Learning, Jan–Feb 2026","Built dashboards that turned raw datasets into visual insights, through applied assignments."]]}];
+
+// role flipper + clock
+const rs=document.getElementById('role');let ri=0;
+setInterval(()=>{ri=(ri+1)%D.length;rs.innerHTML='<span>'+D[ri].n+'</span>'},2400);
+const ck=()=>document.getElementById('clock').textContent=new Date().toLocaleString('en-IN',{hour:'numeric',minute:'2-digit',day:'numeric',month:'short',year:'numeric'});ck();setInterval(ck,30000);
+
+// panel
+const P=document.getElementById('panel');
+function openP(i){const d=D[i];pt.textContent=d.t;pg.textContent=d.g;
+ pl.innerHTML=d.l.map(x=>'<li>'+x+'</li>').join('');
+ pj.innerHTML=d.p.map(x=>'<div><b>'+x[0]+'</b><span>'+x[1]+'</span><p>'+x[2]+'</p></div>').join('');
+ P.classList.add('on');P.scrollTop=0;document.body.style.overflow='hidden';back.focus()}
+function closeP(){P.classList.remove('on');document.body.style.overflow='';open_=-1}
+back.onclick=closeP;addEventListener('keydown',e=>{if(e.key==='Escape')closeP()});
+
+// accessible fallback buttons
+D.forEach((d,i)=>{const b=document.createElement('button');b.textContent=d.t;b.onclick=()=>go(i);alt.appendChild(b)});
+document.querySelectorAll('nav [data-d]').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>go(+a.dataset.d),500)));
+
+// 3D
+const cv=document.getElementById('c'),sec=document.getElementById('doors');
+let R,S,C,doors=[],hov=-1,open_=-1,mx=0,my=0;
+try{
+R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+S=new THREE.Scene();C=new THREE.PerspectiveCamera(45,1,.1,100);
+S.add(new THREE.AmbientLight(0xffe2b8,.45));
+const key=new THREE.PointLight(0xffc27a,1.3,40);key.position.set(0,5,8);S.add(key);
+const wall=new THREE.Mesh(new THREE.PlaneGeometry(40,14),new THREE.MeshStandardMaterial({color:0x1c1611,roughness:1}));wall.position.z=-.6;S.add(wall);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(40,20),new THREE.MeshStandardMaterial({color:0x0e0a07,roughness:.5}));floor.rotation.x=-Math.PI/2;floor.position.set(0,-3.2,4);S.add(floor);
+const gold=new THREE.MeshStandardMaterial({color:0xe0b25a,metalness:.9,roughness:.3});
+D.forEach((d,i)=>{
+ const g=new THREE.Group();g.position.x=(i-1.5)*3.3;
+ const frame=new THREE.Mesh(new THREE.BoxGeometry(2.5,6.4,.5),new THREE.MeshStandardMaterial({color:0x0a0806,roughness:.8}));frame.position.set(0,0,-.25);g.add(frame);
+ const glow=new THREE.Mesh(new THREE.PlaneGeometry(2.1,5.9),new THREE.MeshBasicMaterial({color:d.c}));glow.position.set(0,-.05,-.02);g.add(glow);
+ const pivot=new THREE.Group();pivot.position.set(-1.05,0,0);g.add(pivot);
+ const door=new THREE.Mesh(new THREE.BoxGeometry(2.1,5.9,.16),new THREE.MeshStandardMaterial({color:d.c,roughness:.65}));door.position.set(1.05,-.05,.1);door.userData.i=i;pivot.add(door);
+ for(let k=0;k<2;k++)for(let j=0;j<2;j++){const pn=new THREE.Mesh(new THREE.BoxGeometry(1.5,2.1,.04),new THREE.MeshStandardMaterial({color:d.c,roughness:.5}));pn.material.color.multiplyScalar(.82);pn.position.set(1.05,j?-1.6:1.4,.2);pn.userData.i=i;if(!k)pivot.add(pn)}
+ const h=new THREE.Mesh(new THREE.SphereGeometry(.14,16,16),gold);h.position.set(1.8,-.2,.3);h.userData.i=i;pivot.add(h);
+ const cn=document.createElement('canvas');cn.width=512;cn.height=128;const x=cn.getContext('2d');x.fillStyle='#d9a94c';x.fillRect(0,0,512,128);x.fillStyle='#3a2a0c';x.font='bold 34px sans-serif';x.textAlign='center';x.textBaseline='middle';
+ const w=d.n.split(' ');x.fillText(w.slice(0,Math.ceil(w.length/2)).join(' '),256,44);x.fillText(w.slice(Math.ceil(w.length/2)).join(' '),256,88);
+ const pl_=new THREE.Mesh(new THREE.PlaneGeometry(1.4,.35),new THREE.MeshStandardMaterial({map:new THREE.CanvasTexture(cn),metalness:.6,roughness:.4}));pl_.position.set(1.05,2.1,.2);pl_.userData.i=i;pivot.add(pl_);
+ S.add(g);doors.push({g,pivot,a:0,t:0,meshes:[door,h,pl_]});
+});
+const ray=new THREE.Raycaster(),m=new THREE.Vector2();
+function size(){const w=sec.clientWidth,h=sec.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.position.set(0,.3,Math.max(10,7.6/(Math.tan(22.5*Math.PI/180)*C.aspect)));C.updateProjectionMatrix()}
+size();addEventListener('resize',size);
+function pick(e){const r=cv.getBoundingClientRect();m.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(m,C);
+ const hit=ray.intersectObjects(doors.flatMap(d=>d.meshes))[0];return hit?hit.object.userData.i:-1}
+cv.addEventListener('pointermove',e=>{hov=pick(e);cv.style.cursor=hov>=0?'pointer':'default';const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
+cv.addEventListener('pointerleave',()=>hov=-1);
+cv.addEventListener('click',e=>{const i=pick(e);if(i>=0)go(i)});
+(function loop(){requestAnimationFrame(loop);
+ doors.forEach((d,i)=>{d.t=open_===i?1.5:hov===i?.45:0;d.a+=(d.t-d.a)*.08;d.pivot.rotation.y=-d.a;d.g.position.y=hov===i?.08:0});
+ C.position.x+=(mx*1.2-C.position.x)*.05;C.position.y+=(.3-my*.6-C.position.y)*.05;
+ C.lookAt(0,0,0);
+ if(open_>=0){C.position.z+=(6-C.position.z)*.05;C.position.x+=((open_-1.5)*3.3-C.position.x)*.08}
+ R.render(S,C)})();
+}catch(e){cv.style.display='none';document.querySelector('#doors .h').textContent='3D is unavailable on this device. Pick a door below.'}
+function go(i){if(!R){openP(i);return}open_=i;setTimeout(()=>{openP(i);setTimeout(()=>{open_=-1;size()},400)},900)}
+</script>
+</body>
+</html>
